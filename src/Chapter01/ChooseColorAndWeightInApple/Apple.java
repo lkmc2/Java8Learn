@@ -7,6 +7,7 @@ package Chapter01.ChooseColorAndWeightInApple;
 public class Apple {
     public static final String GREEN = "green";
     public static final String RED = "red";
+    public static final String GROWN = "grown";
 
     private String color;
     private Integer weight;
