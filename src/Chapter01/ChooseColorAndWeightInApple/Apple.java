@@ -2,6 +2,7 @@ package Chapter01.ChooseColorAndWeightInApple;
 
 /**
  * Created by lkmc2 on 2018/4/25.
+ * 苹果实体类
  */
 
 public class Apple {
