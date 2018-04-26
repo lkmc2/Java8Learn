@@ -5,6 +5,9 @@ package Chapter01.ChooseColorAndWeightInApple;
  */
 
 public class Apple {
+    public static final String GREEN = "green";
+    public static final String RED = "red";
+
     private String color;
     private Integer weight;
 
@@ -27,6 +30,14 @@ public class Apple {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public static boolean isGreen(Apple apple) {
+        return GREEN.equals(apple.getColor());
+    }
+
+    public static boolean isHeavyApple(Apple apple) {
+        return apple.getWeight() > 150;
     }
 
     @Override

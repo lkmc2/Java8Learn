@@ -1,79 +1,64 @@
 package Chapter01.ChooseColorAndWeightInApple;
 
-import com.sun.tracing.dtrace.ArgsAttributes;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
- * Created by lkmc2 on 2018/4/25.
- * 获取特定条件苹果的普通方式
+ * Created by lkmc2 on 2018/4/26.
  */
 
-public class ChooseAppleCommon {
 
-    public static final String GREEN = "green";
-    public static final String RED = "red";
+
+public class ChooseAppleMethodreference {
 
     /**
-     * 从库存中获取绿色的苹果
-     *
-     * @param stock 库存
-     * @return 绿色的苹果列表
+     * 断言接口
+     * @param <T> 参数类型
      */
-    public static List<Apple> filterGreenApples(List<Apple> stock) {
+    public interface Predicate<T> {
+        /**
+         * 测试参数是否符合规则
+         * @param t 参数
+         * @return 参数是否符合规则
+         */
+        boolean test(T t);
+    }
+
+    /**
+     * 过滤出符合要求的苹果列表
+     * @param stock 苹果库存
+     * @param p 断言
+     * @return 符合要求的苹果列表
+     */
+    public static List<Apple> filterApples(List<Apple> stock, Predicate<Apple> p) {
         List<Apple> result = new ArrayList<>();
+
         for (Apple apple : stock) {
-            if (GREEN.equals(apple.getColor())) {
+            // 判断苹果是否符合要求
+            if (p.test(apple)) {
                 result.add(apple);
             }
         }
         return result;
-    }
-
-    /**
-     * 从库存中获取质量超过150克的水果
-     * @param stock 库存
-     * @return 质量超过150克的水果列表
-     */
-    public static List<Apple> filterHeavyApples(List<Apple> stock) {
-        List<Apple> result = new ArrayList<>();
-        for (Apple apple : stock) {
-            if (apple.getWeight() > 150) {
-                result.add(apple);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 打印列表中的信息
-     * @param list 列表
-     * @param <T> 列表的类型
-     */
-    public static <T> void printInfoInList(List<T> list) {
-        for (T item : list) {
-            System.out.println(item);
-        }
     }
 
     public static void main(String[] args) {
-//        Apple apple = new Apple(GREEN, 170);
+        //        Apple apple = new Apple(GREEN, 170);
         // 生成苹果列表
-        List<Apple> appleList = generateObjToList(Apple.class, GREEN, 170);
+        List<Apple> appleList = generateObjToList(Apple.class, Apple.GREEN, 170);
 
         System.out.println("-----绿苹果列表-----");
-        // 过滤列表中的绿苹果并打印
-        printInfoInList(filterGreenApples(Objects.requireNonNull(appleList)));
+        // 过滤列表中的绿苹果并打印（方法引用）
+        printInfoInList(filterApples(appleList, Apple::isGreen));
 
         System.out.println("-----质量大于150g苹果列表-----");
-        //过滤出列表中质量大于150g的水果并打印
-        printInfoInList(filterHeavyApples(appleList));
+        //过滤出列表中质量大于150g的水果并打印（方法引用）
+        printInfoInList(filterApples(appleList, Apple::isHeavyApple));
 
         /*
         运行结果：
@@ -88,6 +73,17 @@ public class ChooseAppleCommon {
             Apple{color='green', weight=191}
             Apple{color='green', weight=199}
          */
+    }
+
+    /**
+     * 打印列表中的信息
+     * @param list 列表
+     * @param <T> 列表的类型
+     */
+    public static <T> void printInfoInList(List<T> list) {
+        for (T item : list) {
+            System.out.println(item);
+        }
     }
 
     /**
@@ -127,7 +123,7 @@ public class ChooseAppleCommon {
                     switch (args[j].getClass().getSimpleName()) {
                         case "String":
                             int value = random.nextInt(2);
-                            params[j] = (value == 0) ? GREEN : RED;
+                            params[j] = (value == 0) ? Apple.GREEN : Apple.RED;
                             break;
                         case "Integer":
                             params[j] = random.nextInt(300);
