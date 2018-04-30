@@ -13,6 +13,11 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
  */
 
 public class UsePredicate {
+//    java8 自带的Predicate接口如下：
+//    @FunctionalInterface
+//    public interface Predicate<T>{
+//        boolean test(T t);
+//    }
 
     /**
      * 从参数传入的列表中获取符合Predicate断言条件
