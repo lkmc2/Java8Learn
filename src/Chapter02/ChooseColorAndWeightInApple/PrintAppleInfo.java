@@ -41,7 +41,11 @@ public class PrintAppleInfo {
         }
     }
 
-
+    /**
+     * 将苹果列表以指定格式打印
+     * @param stock 苹果列表
+     * @param formatter 打印格式策略
+     */
     public static void prettyPrintApple(List<Apple> stock, AppleFormatter formatter) {
         for (Apple apple : stock) {
             String output = formatter.accept(apple);
@@ -59,5 +63,31 @@ public class PrintAppleInfo {
 
         System.out.println("-----------打印每个苹果的重量-----------");
         prettyPrintApple(appleList, new AppleWeightFormatter());
+
+        /*
+        运行结果：
+        -----------打印每个苹果的轻重和颜色-----------
+        一个重的green的苹果
+        一个轻的green的苹果
+        一个重的red的苹果
+        一个重的red的苹果
+        一个重的green的苹果
+        一个轻的red的苹果
+        一个重的red的苹果
+        一个重的red的苹果
+        一个轻的red的苹果
+        一个轻的green的苹果
+        -----------打印每个苹果的重量-----------
+        一个290g的苹果
+        一个40g的苹果
+        一个274g的苹果
+        一个178g的苹果
+        一个258g的苹果
+        一个25g的苹果
+        一个198g的苹果
+        一个206g的苹果
+        一个7g的苹果
+        一个133g的苹果
+         */
     }
 }
