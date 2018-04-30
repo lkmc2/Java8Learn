@@ -9,6 +9,7 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
 
 /**
  * Created by lkmc2 on 2018/4/26.
+ * 使用Lambda挑选出符合条件的苹果
  */
 
 
