@@ -12,8 +12,10 @@ import java.awt.event.ActionListener;
 
 public class GuiWithLambda extends JFrame {
 
+    // 按钮组件
     private JButton button;
-    private JLabel label;
+    // 标签组件
+    private JLabel label; 
 
     public GuiWithLambda() {
         setLayout(null);
