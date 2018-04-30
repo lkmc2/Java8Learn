@@ -11,7 +11,7 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
 
 /**
  * Created by lkmc2 on 2018/4/30.
- * 使用Lambda挑选出符合条件的对象
+ * 使用Lambda挑选出符合条件的对象（行为参数化，把方法当成一种参数）
  */
 
 public class ChooseObjWithLambda {
