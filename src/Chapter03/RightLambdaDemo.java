@@ -14,6 +14,15 @@ public class RightLambdaDemo {
         函数式接口定义：只定义一个抽象方法的接口
      */
 
+    /*
+        @FunctionalInterface注解用于表示该接口是函数式接口，
+        可限定接口只有一个抽象方法，否则报错。
+     */
+    @FunctionalInterface
+    interface MyCallable {
+        String apply();
+    }
+
     public static void execute(Runnable r) {
         r.run();
     }
