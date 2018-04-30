@@ -11,7 +11,7 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
  * 使用方法引用获取符合条件的苹果列表
  */
 
-public class ChooseAppleMethodreference {
+public class ChooseAppleMethodReference {
 
     /**
      * 断言接口
