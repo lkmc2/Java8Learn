@@ -15,10 +15,12 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
 
 public class ChooseAppleWithStrategyPattern {
 
+    // 挑选苹果策略接口
     public interface ApplePredicate {
         boolean test(Apple apple);
     }
 
+    // 挑选质量大于150g苹果策略
     public static class AppleHeavyWeightPredicate implements ApplePredicate {
         @Override
         public boolean test(Apple apple) {
@@ -26,6 +28,7 @@ public class ChooseAppleWithStrategyPattern {
         }
     }
 
+    // 挑选绿苹果策略
     public static class AppleGreenColorPredicate implements ApplePredicate {
         @Override
         public boolean test(Apple apple) {
@@ -33,6 +36,7 @@ public class ChooseAppleWithStrategyPattern {
         }
     }
 
+    // 挑选质量大于150g的红苹果策略
     public static class AppleRedAndHeavyPredicate implements ApplePredicate {
         @Override
         public boolean test(Apple apple) {
