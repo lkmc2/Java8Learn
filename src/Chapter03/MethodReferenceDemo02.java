@@ -28,7 +28,7 @@ public class MethodReferenceDemo02 {
         // 对应的方法引用
         BiFunction<String, Integer, Apple> appleConstructorMethod = Apple::new;
         // 将参数填入构造器，生成苹果对象（方法引用）
-        Apple appleGreen = appleConstructorLambda.apply(Apple.GREEN, 110);
+        Apple appleGreen = appleConstructorMethod.apply(Apple.GREEN, 110);
         System.out.println(appleGreen);
 
         /*
