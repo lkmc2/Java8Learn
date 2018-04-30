@@ -6,12 +6,12 @@ import java.util.function.Consumer;
 
 /**
  * Created by lkmc2 on 2018/4/30.
- * 使用java8自带Consumer断言条件
+ * 使用java8自带Consumer接口（消费方法）
  */
 
 public class UseConsumer {
 
-//        java8 自带的Consumer接口如下：
+//        java8 自带的Consumer接口如下：（有参数，无返回值，用于执行不需要返回值的情况）
 //        @FunctionalInterface
 //        public interface Consumer<T>{
 //            void accept(T t);
