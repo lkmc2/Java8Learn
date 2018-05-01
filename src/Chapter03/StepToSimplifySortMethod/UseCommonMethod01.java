@@ -14,7 +14,7 @@ import static Chapter01.ChooseColorAndWeightInApple.ListUtils.printInfoInList;
  * 使用普通方法进行排序（实现Comparator接口）
  */
 
-public class CommonMethod01 {
+public class UseCommonMethod01 {
 
     // 定义一个实现了Comparator接口的类
     public static class AppleComparator implements Comparator<Apple> {
