@@ -11,7 +11,9 @@ public class FunctionComposite {
 
     static Function<Integer, Integer> f = x -> x + 1;
     static Function<Integer, Integer> g = x -> x * 2;
+    // 先执行f方法，将f的结果传给g方法做参数
     static Function<Integer, Integer> h = f.andThen(g); // g(f(x))
+    // 先执行g方法，将g的结果传给f方法做参数
     static Function<Integer, Integer> k = f.compose(g); // f(g(x))
 
     static int resultAndThen = h.apply(1); // 结果：4 =（1 + 1）* 2
