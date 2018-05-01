@@ -1,4 +1,4 @@
-package Chapter03;
+package Chapter03.Entity;
 
 /**
  * Created by lkmc2 on 2018/4/25.

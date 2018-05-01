@@ -12,6 +12,7 @@ public class Apple {
 
     private String color;
     private Integer weight;
+    private String country;
 
     public Apple() {
     }
@@ -23,6 +24,11 @@ public class Apple {
     public Apple(String color, Integer weight) {
         this.color = color;
         this.weight = weight;
+    }
+
+    public Apple(Integer weight, String country) {
+        this.weight = weight;
+        this.country = country;
     }
 
     public String getColor() {
@@ -49,11 +55,20 @@ public class Apple {
         return apple.getWeight() > 150;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public String toString() {
         return "Apple{" +
                 "color='" + color + '\'' +
                 ", weight=" + weight +
+                ", country='" + country + '\'' +
                 '}';
     }
 }

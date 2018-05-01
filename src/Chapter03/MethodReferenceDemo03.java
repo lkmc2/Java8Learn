@@ -1,5 +1,9 @@
 package Chapter03;
 
+import Chapter03.Entity.Apple;
+import Chapter03.Entity.Fruit;
+import Chapter03.Entity.Orange;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
