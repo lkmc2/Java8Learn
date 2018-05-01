@@ -1,4 +1,4 @@
-package Chapter03;
+package Chapter03.Composite;
 
 import Chapter01.ChooseColorAndWeightInApple.Apple;
 
