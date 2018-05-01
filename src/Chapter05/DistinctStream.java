@@ -18,6 +18,11 @@ public class DistinctStream {
                 .filter(i -> i % 2 == 0)
                 .distinct()
                 .forEach(System.out::println);
+        /*
+        运行结果：
+        2
+        4
+         */
     }
 
 }
