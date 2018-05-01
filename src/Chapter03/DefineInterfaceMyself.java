@@ -14,7 +14,7 @@ public class DefineInterfaceMyself {
         R apply(T t, U u, V v);
     }
 
-    // 指向Color类的构造器
+    // 指向Color类的Color(int r, int g, int b)构造器
     static TriFunction<Integer, Integer, Integer, Color> colorConstructor = Color::new;
 
     public static void main(String[] args) {
