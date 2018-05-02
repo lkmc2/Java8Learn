@@ -24,9 +24,9 @@ public class FlatMapTest2 {
         
         List<int[]> result = numbers1.stream()
                 .flatMap(i -> numbers2.stream()
-                        .filter(j -> (i + j) % 3 == 0)
-                        .map(j -> new int[]{i, j})
-                )
+                                        .filter(j -> (i + j) % 3 == 0)
+                                        .map(j -> new int[]{i, j})
+                        )
                 .collect(toList());
 
         for (int[] array : result) {
