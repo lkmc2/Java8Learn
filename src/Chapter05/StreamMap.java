@@ -8,11 +8,11 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Created by lkmc2 on 2018/5/1.
- * 使用skip(n)丢弃Steam产生的前n个元素（如果流中元素不足n个，则返回一个空流）
+ * Created by lkmc2 on 2018/5/2.
+ * Stream映射（将菜单对象列表映射成菜单名列表）
  */
 
-public class SkipStream {
+public class StreamMap {
 
     public static void main(String[] args) {
         // 菜单列表
@@ -28,16 +28,23 @@ public class SkipStream {
                 new Dish("salmon", false, 450, Dish.Type.FISH)
         );
 
-        // 过滤卡路里高于300的菜，丢弃前两个元素
-        List<Dish> dishes = menu.stream()
-                .filter(d -> d.getCalories() > 300)
-                .skip(2)
+        // 将菜单对象列表映射成菜单名列表
+        List<String> dishNames = menu.stream()
+                .map(Dish::getName)
                 .collect(toList());
-        System.out.println(dishes);
+        System.out.println(dishNames);
+
+        // 将将菜单对象列表映射成菜单名长度列表
+        List<Integer> dishNameLengths = menu.stream()
+                .map(Dish::getName)
+                .map(String::length)
+                .collect(toList());
+        System.out.println(dishNameLengths);
 
         /*
         运行结果：
-        [chicken, french fries, rice, pizza, salmon]
+        [pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon]
+        [4, 4, 7, 12, 4, 12, 5, 6, 6]
          */
     }
 
