@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
-import static java.util.Comparator.comparingInt;
 
 /**
  * Created by lkmc2 on 2018/5/2.
@@ -45,8 +44,8 @@ public class Practice {
         // 返回所有交易员的姓名字符串，按字母顺序排序
         filterByAllTraderNameSortByAlpha(transactions);
 
-        // 获取在米兰工作的交易者
-        filterTraderInMilan(transactions);
+        // 判断有没有在米兰工作的交易者
+        ifHaveTraderInMilan(transactions);
 
         // 打印生活在剑桥的交易员的所有交易额
         printAllTranstionMoney(transactions);
@@ -63,7 +62,7 @@ public class Practice {
         System.out.println("-----找出2011年发生的所有交易，并按交易额排序（从低到高）-----");
         transactions.stream()
                 .filter(t -> t.getYear() == 2011)
-                .sorted(comparingInt(Transaction::getValue))
+                .sorted(comparing(Transaction::getValue))
                 .forEach(System.out::println);
     }
 
@@ -80,31 +79,30 @@ public class Practice {
     private static void filterTradeInCambridgeSortByName(List<Transaction> transactions) {
         System.out.println("-----查找所有来自于剑桥的交易员，并按姓名排序-----");
         transactions.stream()
-                .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
-                .map(t -> t.getTrader().getName())
+                .map(Transaction::getTrader)
+                .filter(t -> "Cambridge".equals(t.getCity()))
                 .distinct()
-                .sorted(comparing(name -> name.charAt(0)))
+                .sorted(comparing(Trader::getName))
                 .forEach(System.out::println);
     }
 
     // 返回所有交易员的姓名字符串，按字母顺序排序
     private static void filterByAllTraderNameSortByAlpha(List<Transaction> transactions) {
         System.out.println("-----返回所有交易员的姓名字符串，按字母顺序排序-----");
-        transactions.stream()
+        String result = transactions.stream()
                 .map(t -> t.getTrader().getName())
                 .distinct()
                 .sorted()
-                .forEach(System.out::println);
+                .reduce("", (n1, n2) -> n1 + n2);
+        System.out.println(result);
     }
 
-    // 获取在米兰工作的交易者
-    private static void filterTraderInMilan(List<Transaction> transactions) {
-        System.out.println("----获取在米兰工作的交易者----");
-        transactions.stream()
-                .filter(t -> "Milan".equals(t.getTrader().getCity()))
-                .map(t -> t.getTrader().getName())
-                .distinct()
-                .forEach(System.out::println);
+    // 判断有没有在米兰工作的交易者
+    private static void ifHaveTraderInMilan(List<Transaction> transactions) {
+        System.out.println("----判断有没有在米兰工作的交易者----");
+        boolean ifAnyTraderInMilan = transactions.stream()
+                .anyMatch(t -> "Milan".equals(t.getTrader().getCity()));
+        System.out.println(ifAnyTraderInMilan);
     }
 
     // 打印生活在剑桥的交易员的所有交易额
@@ -112,6 +110,7 @@ public class Practice {
         System.out.println("-----打印生活在剑桥的交易员的所有交易额-----");
         transactions.stream()
                 .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
+                .map(Transaction::getValue)
                 .forEach(System.out::println);
     }
 
@@ -131,6 +130,10 @@ public class Practice {
             .map(Transaction::getValue)
             .reduce(Integer::min)
             .ifPresent(System.out::println);
+        // 另一种简单写法
+        transactions.stream()
+                .min(comparing(Transaction::getValue))
+                .ifPresent(System.out::println);
     }
 
     /*
@@ -142,24 +145,22 @@ public class Practice {
     Cambridge
     Milan
     -----查找所有来自于剑桥的交易员，并按姓名排序-----
-    Alan
-    Brian
-    Raoul
+    Trader:Alan in Cambridge
+    Trader:Brian in Cambridge
+    Trader:Raoul in Cambridge
     -----返回所有交易员的姓名字符串，按字母顺序排序-----
-    Alan
-    Brian
-    Mario
-    Raoul
-    ----获取在米兰工作的交易者----
-    Mario
+    AlanBrianMarioRaoul
+    ----判断有没有在米兰工作的交易者----
+    true
     -----打印生活在剑桥的交易员的所有交易额-----
-    {Trader:Brian in Cambridge, year: 2011, value:300}
-    {Trader:Raoul in Cambridge, year: 2012, value:1000}
-    {Trader:Raoul in Cambridge, year: 2011, value:400}
-    {Trader:Alan in Cambridge, year: 2012, value:950}
+    300
+    1000
+    400
+    950
     -----获取所有交易中最高的交易额----
     1000
     -----找到交易额最小的交易----
     300
+    {Trader:Brian in Cambridge, year: 2011, value:300}
      */
 }
