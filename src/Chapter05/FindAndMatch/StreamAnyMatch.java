@@ -1,4 +1,4 @@
-package Chapter05;
+package Chapter05.FindAndMatch;
 
 import Chapter04.Entity.Dish;
 
@@ -7,10 +7,10 @@ import java.util.List;
 
 /**
  * Created by lkmc2 on 2018/5/2.
- * Stream AllMatch全部匹配才为真
+ * Stream AnyMatch匹配任意一个即为真
  */
 
-public class StreamAllMatch {
+public class StreamAnyMatch {
 
     public static void main(String[] args) {
         // 菜单列表
@@ -26,12 +26,13 @@ public class StreamAllMatch {
                 new Dish("salmon", false, 450, Dish.Type.FISH)
         );
 
-        // 判断是否所有菜的卡路里都小于1000
-        boolean isHealthy = menu.stream()
-                .allMatch(d -> d.getCalories() < 1000);
-        System.out.println(isHealthy);
+        // 如果菜单中有任意一道菜是素菜，则条件成立
+        if (menu.stream().anyMatch(Dish::isVegetarian)) {
+            System.out.println("这个菜单对素食主义者真是友好");
+        }
+
         /*
-        运行结果：true
+        运行结果：这个菜单对素食主义者真是友好
          */
     }
 

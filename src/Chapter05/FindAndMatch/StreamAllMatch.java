@@ -1,4 +1,4 @@
-package Chapter05;
+package Chapter05.FindAndMatch;
 
 import Chapter04.Entity.Dish;
 
@@ -7,10 +7,10 @@ import java.util.List;
 
 /**
  * Created by lkmc2 on 2018/5/2.
- * Stream NoneMatch没有一个匹配才为真
+ * Stream AllMatch全部匹配才为真
  */
 
-public class StreamNoneMatch {
+public class StreamAllMatch {
 
     public static void main(String[] args) {
         // 菜单列表
@@ -26,11 +26,10 @@ public class StreamNoneMatch {
                 new Dish("salmon", false, 450, Dish.Type.FISH)
         );
 
-        // 没有一道菜卡路里大于1000才为真
+        // 判断是否所有菜的卡路里都小于1000
         boolean isHealthy = menu.stream()
-                .noneMatch(d -> d.getCalories() >= 1000);
+                .allMatch(d -> d.getCalories() < 1000);
         System.out.println(isHealthy);
-
         /*
         运行结果：true
          */
